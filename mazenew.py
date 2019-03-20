@@ -1,30 +1,37 @@
-import os
-import tty, sys, termios
+'''import os
+import tty
+import sys
+import termios
+'''
 
-with open("level_first.txt", "r") as level1:
-    level1.readlines()
-    level1.read().split(',')
-    print(level1)
 
-stuff  = {'wall'  :  "#",
+def maze_level_1(level_1):
+    with open('levelfirst.txt', 'r') as myfile:
+        for line in myfil
+            print(line, end='')
+    print(myfile)
+
+
+
+
+
+'''stuff  = {'wall':  "#",
           'player':  "@",
-          'empty' :  "."}
+          'score':  "."}'''
 
-x=6
-y=4
+'''x = 6
+y = 4'''
 
-def gameplace():
-    for i in level1:
+'''def gameplace():
+    for i in level_1:
         print()
         for j in i:
-            print(" ".join(j),end='')
+            print(" ".join(j),end='')'''
 
-os.system("clear")
-gameplace()
-print()
+'''os.system("clear")'''
 
 
-def readKey():
+'''def readKey():
     fd = sys.stdin.fileno()
     old_settings = termios.tcgetattr(fd)
     try:
@@ -34,34 +41,34 @@ def readKey():
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
     return ch
 
+
 while True:
     pressedKey = readKey()
-    print()
-        
-    if pressedKey=="w":
-        if level1[y-1][x]!="#":
-            level1[y][x]="."
-            y -=1
-            level1[y][x]="@"   
-    if pressedKey=="s":
-        if level1[y+1][x]!="#":
-            level1[y][x]="."
-            y +=1
-            level1[y][x]="@"
-    if pressedKey=="a":
-        if level1[y][x-1]!="#":
-            level1[y][x]="."
-            x -=1
-            level1[y][x]="@"
-    if pressedKey=="d":
-        if level1[y][x+1]!="#":
-            level1[y][x]="."
-            x +=1
-            level1[y][x]="@"
-    if pressedKey=="q" or y==9 and x==14:
+    if pressedKey == "w":
+        if level_1[y - 1][x] != "#":
+            level_1[y][x] = "."
+            y -= 1
+            level_1[y][x] = "@"
+    if pressedKey == "s":
+        if level_1[y + 1][x] != "#":
+            level_1[y][x] = "."
+            y += 1
+            level_1[y][x] = "@"
+    if pressedKey == "a":
+        if level_1[y][x - 1] != "#":
+            level_1[y][x] = "."
+            x -= 1
+            level_1[y][x] = "@"
+    if pressedKey == "d":
+        if level_1[y][x + 1] != "#":
+            level_1[y][x] = "."
+            x += 1
+            level_1[y][x] = "@"
+    if pressedKey == "q" or y == 9 and x == 14:
         break
+'''
+'''os.system("clear")'''
 
-    os.system("clear")
-   
-    gameplace()
-    print()
+
+level_1 = []
+maze_level_1(level_1)
