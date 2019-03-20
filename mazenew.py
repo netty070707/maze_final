@@ -1,26 +1,32 @@
-'''import os
+import os
 import tty
 import sys
 import termios
-'''
+
+level_1 = []
 
 
-def maze_level_1(level_1):
-    with open('levelfirst.txt', 'r') as myfile:
-        for line in myfil
+def maze_level_1(level_1, filename):
+    with open(filename, 'r') as myfile:
+        for line in myfile:
+            level_1.append(line)
             print(line, end='')
-    print(myfile)
 
 
+def character_converting():
+    converted_characters = []
+    for character in level_1:
+        if character == '2':
+            character == u'\u2501'
+        if character == 'I':
+            character == u'\u258f'
+        if character == '@':
+            character == u'\u258f'  
+        if character == '.':
+            character == u'\u258f'   
+        converted_characters.append(character)
+        print(converted_characters)
 
-
-
-'''stuff  = {'wall':  "#",
-          'player':  "@",
-          'score':  "."}'''
-
-'''x = 6
-y = 4'''
 
 '''def gameplace():
     for i in level_1:
@@ -70,5 +76,6 @@ while True:
 '''os.system("clear")'''
 
 
-level_1 = []
-maze_level_1(level_1)
+if __name__ == '__main__':   
+    maze_level_1(level_1, 'levelfirst.txt')
+    character_converting()
