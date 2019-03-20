@@ -8,24 +8,24 @@ level_1 = []
 
 def maze_level_1(level_1, filename):
     with open(filename, 'r') as myfile:
-        for line in myfile:
-            level_1.append(line)
-            print(line, end='')
+        for character in myfile:
+            level_1.append(character.split(' '))
 
 
-def character_converting():
+
+def character_converting(level_1):
     converted_characters = []
     for character in level_1:
-        if character == '2':
-            character == u'\u2501'
+        if character == '#':
+            character = u'\u2500'
         if character == 'I':
-            character == u'\u258f'
+            character = u'\u2502'
         if character == '@':
-            character == u'\u258f'  
+            character = u'\u1024'  
         if character == '.':
-            character == u'\u258f'   
+            character = ' '   
         converted_characters.append(character)
-        print(converted_characters)
+    print(converted_characters)
 
 
 '''def gameplace():
@@ -78,4 +78,4 @@ while True:
 
 if __name__ == '__main__':   
     maze_level_1(level_1, 'levelfirst.txt')
-    character_converting()
+    character_converting(level_1)
