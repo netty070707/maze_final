@@ -1,13 +1,9 @@
 import os
-import tty
-import readchar
 import sys
-import termios
-
-level_1 = []
+import readchar
 
 
-def maze_level_1(level_1, filename):
+def maze_levels(level_1, filename):
     with open(filename, 'r') as myfile:
         for line in myfile:
             level_1.append(line.split(' '))
@@ -22,7 +18,7 @@ def character_converting(level_1):
             if character == 'I':
                 character = u'\u2502'
             if character == '@':
-                character = u'\u1024'
+                character = u'\u058d'
             if character == '.':
                 character = ' '
             converted_characters.append(character)
@@ -31,44 +27,46 @@ def character_converting(level_1):
             print(character, end="")
 
 
-def readKey():
-    fd = sys.stdin.fileno()
-    old_settings = termios.tcgetattr(fd)
-    try:
-        tty.setraw(sys.stdin.fileno())
-        ch = sys.stdin.read(1)
-    finally:
-        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-    return ch
-
-
-while True:
-    pressedKey = readKey()
-    if pressedKey == "w":
-        if level_1[0][y - 1][x] != "#":
-            level_1[0][y][x] = "."
+def movement(level_1):
+    x=3
+    y=2
+    i=0
+    for index in level_1:
+        if '@' in index:
+            y=i
+            x=index.index('@')
+        i+=1
+    if readchar.readkey() == "5":
+        if level_1[y - 1][x] != "#":
+            level_1[y][x] = "."
             y -= 1
-            level_1[0][y][x] = "@"
-    if pressedKey == "s":
-        if level_1[0][y + 1][x] != "#":
-            level_1[0][y][x] = "."
+            level_1[y][x] = "@"
+            maze_reload(level_1)(level_1)
+    if readchar.readkey() == "2":
+        if level_1[y + 1][x] != "#":
+            level_1[y][x] = "."
             y += 1
-            level_1[0][y][x] = "@"
-    if pressedKey == "a":
-        if level_1[0][y][x - 1] != "#":
-            level_1[0][y][x] = "."
+            level_1[y][x] = "@"
+    if readchar.readkey() == "1":
+         if level_1[y][x - 1] != "#":
+            level_1[y][x] = "."
             x -= 1
-            level_1[0][y][x] = "@"
-    if pressedKey == "d":
-        if level_1[0][y][x + 1] != "#":
-            level_1[0][y][x] = "."
+            level_1[y][x] = "@"
+    if readchar.readkey() == "3":
+        if level_1[y][x + 1] != "#":
+            level_1[y][x] = "."
             x += 1
-            level_1[0][y][x] = "@"
-    if pressedKey == "q" or y == 9 and x == 14:
-        break
+            level_1[y][x] = "@"
+    else:
+        print("Invalid key")
+
+
+def main():
+    level_1 = []
+    maze_levels(level_1, 'levelfirst.txt')
+    character_converting(level_1)
+    movement(level_1)
 
 
 if __name__ == '__main__':
-    maze_level_1(level_1, 'level_third.txt')
-    character_converting(level_1)
-    readKey()
+    main()
